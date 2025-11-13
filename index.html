@@ -7,154 +7,211 @@
     
     <!-- Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Google Fonts (Poppins para títulos, Roboto para corpo) --><link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Material Symbols --><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Material Symbols (Conforme Brand Kit) --><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <style>
-        /* Estilos personalizados */
+        /* Estilos personalizados atualizados com o Brand Kit Xertica.ai (Dark Mode) */
         body {
+            /* Fonte secundária (Roboto) para o corpo, conforme Brand Kit */
             font-family: 'Roboto', sans-serif;
-            background-color: #F9F8FF; 
-            background-image: 
-                radial-gradient(circle at 100% 0%, rgba(255, 0, 243, 0.1), transparent 40%),
-                radial-gradient(circle at 0% 100%, rgba(0, 192, 255, 0.1), transparent 40%);
-            color: #393232; 
+            
+            /* Cor de fundo fallback */
+            background-color: #0F172A; /* Tailwind slate-900 */
+            
+            /* --- FUNDO ATUALIZADO --- */
+            /* Removidas todas as imagens antigas e adicionada a nova imagem única */
+            background-image: url('https://i.imgur.com/dULOC88.png');
+            
+            /* Propriedades para a imagem de fundo única */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Imagem fixa no fundo */
         }
+        
         h1, h2, h3 {
-            font-family: 'Space Mono', monospace;
-            color: #1E1E1E; 
+            /* Fonte primária (Poppins) para títulos, conforme Brand Kit */
+            font-family: 'Poppins', sans-serif;
         }
+        
+        /* Classe de gradiente removida dos cards, mas mantida caso seja usada em outro lugar */
         .gradient-text {
-            background: linear-gradient(90deg, #FF00F3, #00C0FF); 
+            background: linear-gradient(90deg, #C0FF7D, #00BEFF); /* Green 50 -> Primary 50 */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        
         .btn-calculator {
-            background: linear-gradient(90deg, #00C0FF, #FF00F3); 
-            background-size: 200% auto;
+            /* Alterado de gradiente para cor sólida, conforme exemplos de CTA (Pg 18, 22, 28) */
+            background-color: #00BEFF; /* Primary 50 */
             color: white; 
-            font-family: 'Space Mono', monospace;
+            
+            /* Fonte primária (Poppins) para botões */
+            font-family: 'Poppins', sans-serif;
+            
             transition: all 0.3s ease-out;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); 
             border: none; 
         }
+        
         .btn-calculator:hover {
-            transform: translateY(-2px) scale(1.02); 
-            box-shadow: 0 10px 15px -3px rgba(0, 192, 255, 0.4), 0 4px 6px -4px rgba(0, 192, 255, 0.3); 
-            background-position: right center; 
+            /* Mantido apenas o filtro de brilho para feedback sutil */
+            filter: brightness(1.1);
         }
+        
+        /* ATUALIZADO: Card com Borda de Gradiente (como na referência) */
         .sector-card {
             position: relative;
-            overflow: hidden; /* Garante que o ícone grande não vaze */
+            overflow: hidden; 
             transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            
+            /* Borda de gradiente usando background-clip */
+            border: 2px solid transparent;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: 
+                linear-gradient(to right, #1E293B, #1E293B), /* Fundo (slate-800) */
+                linear-gradient(135deg, #00BEFF, #C0FF7D); /* Borda (Blue-to-Green) */
+
+            box-shadow: 0 0 15px rgba(0, 190, 255, 0.1); /* Efeito "Glow" sutil */
         }
+        
         .sector-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); 
+            /* "Glow" mais intenso no hover */
+            box-shadow: 0 0 30px rgba(0, 190, 255, 0.3); 
         }
-        /* Ícone de fundo (mais grosso) */
-        .sector-card .bg-icon {
-            position: absolute;
-            right: -20px; 
-            top: -10px; 
-            font-size: 11rem; 
-            color: #D1D5DB; 
-            opacity: 0.6; 
-            z-index: 0;
-            line-height: 1;
-            user-select: none; 
-            pointer-events: none;
-            /* Alterado 'wght' para 400 para engrossar o ícone */
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48; 
-            transform: rotate(15deg); 
+        
+        /* Ícone grande e apagado substituído pelo novo estilo circular */
+        .bg-icon {
+           display: none;
         }
+
+        /* ATUALIZADO: Ícone em círculo, posicionado acima do título */
+        .card-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto; /* Centralizado, com margem abaixo */
+            width: 60px; /* Tamanho do círculo */
+            height: 60px; /* Tamanho do círculo */
+            background-color: rgba(51, 65, 85, 0.5); /* Fundo translúcido (slate-700) */
+            border-radius: 9999px; /* Círculo */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil no círculo */
+        }
+        .card-icon-wrapper span {
+            font-size: 2rem; /* 32px */
+            color: #94a3b8; /* Cor do ícone (slate-400) */
+            font-variation-settings: 'wght' 300; /* Peso mais fino */
+        }
+
+        /* Estilos da "nova dobra" removidos */
 
     </style>
 </head>
-<body class="flex flex-col min-h-screen antialiased">
+<!-- Cor de texto base alterada para o modo escuro --><body class="flex flex-col min-h-screen antialiased text-slate-200">
 
     <header class="py-4 md:py-6">
         <div class="container mx-auto max-w-5xl px-4 flex justify-center items-center">
             <a href="#">
-                <img src="https://cdn.prod.website-files.com/653ff55cffa885d43e1a7bfa/6672e8383dbaa6bd3e8e527c_logo-xerticaAi.png" alt="Logo Xertica.ai" class="h-8">
+                <!-- LOGO BRANCO ATUALIZADO --><img src="https://storage.googleapis.com/etp-bucket/Logos%20Xertica.ai%20%28.png%29/xertica.ai/Copy%20of%20Logo_XERTICA_white.png" alt="Logo Xertica.ai" class="h-8">
             </a>
         </div>
     </header>
 
     <main class="flex-grow container mx-auto max-w-5xl px-4 py-8 md:py-12">
-        <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-center uppercase mb-2">Central de Calculadoras</h1>
-        <p class="text-center text-lg md:text-xl text-gray-600 mb-10 md:mb-16">Acesse as calculadoras de impacto e ROI por setor.</p>
-
-        <!-- Seção Manual --><div class="mb-12 text-center">
-            <h2 class="text-xl md:text-2xl font-bold uppercase mb-4">Manual de Uso</h2>
-            <p class="text-gray-600 mb-4">Consulte o guia para utilizar as calculadoras da melhor forma.</p>
-            <a href="https://xerticaai.github.io/calculadora-manual/" target="_blank" class="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2 px-6 rounded-full border border-gray-300 transition duration-300">
+        
+        <!-- LAYOUT REVERTIDO PARA CENTRALIZADO -->
+        
+        <!-- Título Principal -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white text-center">Central de Calculadoras</h1>
+        <!-- Descrição -->
+        <p class="text-lg md:text-xl text-slate-400 mb-8 text-center">Acesse as calculadoras de impacto e ROI por setor.</p>
+        
+        <!-- Seção Manual -->
+        <div class="mt-8 mb-16 md:mb-24 text-center">
+            <h2 class="text-xl font-bold text-white mb-2">Manual de Uso</h2>
+            <p class="text-slate-400 mb-4">Consulte o guia para utilizar as calculadoras da melhor forma.</p>
+            <a href="https://xerticaai.github.io/calculadora-manual/" target="_blank" 
+               class="inline-flex items-center gap-2 text-blue-400 font-bold py-2 px-6 rounded-full border border-blue-400 transition duration-300
+                      hover:bg-blue-400/10 hover:text-blue-300">
                 <span class="material-symbols-outlined">description</span>
                 Acessar Manual
             </a>
         </div>
-        
-        <!-- Layout em Caixas --><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- FIM DO LAYOUT CENTRALIZADO -->
 
-            <!-- Card Justiça --><div class="sector-card bg-white rounded-2xl p-6 shadow-lg border border-gray-200 flex flex-col justify-between">
-                 <!-- Ícone de Fundo --><span class="material-symbols-outlined bg-icon">gavel</span>
-                <div class="relative z-10">
-                    <h2 class="text-2xl font-bold uppercase mb-4 text-center gradient-text">Justiça</h2>
-                    <p class="text-sm text-center text-gray-500 mb-6">Calcule o impacto da IA em tarefas como transcrição, elaboração de peças e pesquisas.</p> 
+
+        <!-- Layout em Caixas (Cards) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Card Justiça --><div class="sector-card rounded-2xl p-6 flex flex-col justify-between">
+                <!-- Conteúdo (z-index removido) --><div class="relative">
+                    <!-- Ícone NOVO (circular) --><div class="card-icon-wrapper">
+                         <span class="material-symbols-outlined">gavel</span>
+                    </div>
+                    
+                    <!-- TÍTULO ATUALIZADO: .gradient-text removido, text-white adicionado --><h2 class="text-2xl font-bold text-center mb-4 text-white">Justiça</h2>
+                    <p class="text-sm text-center text-slate-400 mb-6">Calcule o impacto da IA em tarefas como transcrição, elaboração de peças e pesquisas.</p> 
                     <div class="space-y-4 flex flex-col">
-                        <a href="https://xerticaai.github.io/calculadora-horas-justica/" target="_blank" class="btn-calculator uppercase w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
+                        <!-- uppercase removido --><a href="https://xerticaai.github.io/calculadora-horas-justica/" target="_blank" class="btn-calculator w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
                             Economia de Horas
                         </a>
-                        <a href="https://xerticaai.github.io/calculadora-roi-justica/" target="_blank" class="btn-calculator uppercase w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
+                        <!-- uppercase removido --><a href="https://xerticaai.github.io/calculadora-roi-justica/" target="_blank" class="btn-calculator w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
                             Cálculo de ROI
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Card Governo --><div class="sector-card bg-white rounded-2xl p-6 shadow-lg border border-gray-200 flex flex-col justify-between">
-                <!-- Ícone de Fundo --><span class="material-symbols-outlined bg-icon">account_balance</span>
-                <div class="relative z-10">
-                    <h2 class="text-2xl font-bold uppercase mb-4 text-center gradient-text">Governo</h2>
-                    <p class="text-sm text-center text-gray-500 mb-6">Estime ganhos em atendimento, análise e geração de documentos, e anonimização.</p> 
+            <!-- Card Governo --><div class="sector-card rounded-2xl p-6 flex flex-col justify-between">
+                <!-- Conteúdo (z-index removido) --><div class="relative">
+                    <!-- Ícone NOVO (circular) --><div class="card-icon-wrapper">
+                         <span class="material-symbols-outlined">account_balance</span>
+                    </div>
+                    
+                    <!-- TÍTULO ATUALIZADO: .gradient-text removido, text-white adicionado --><h2 class="text-2xl font-bold text-center mb-4 text-white">Governo</h2>
+                    <p class="text-sm text-center text-slate-400 mb-6">Estime ganhos em atendimento, análise e geração de documentos, e anonimização.</p> 
                     <div class="space-y-4 flex flex-col">
-                        <a href="https://xerticaai.github.io/calculadora-horas-governo/" target="_blank" class="btn-calculator uppercase w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
+                        <!-- uppercase removido --><a href="https://xerticaai.github.io/calculadora-horas-governo/" target="_blank" class="btn-calculator w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
                             Economia de Horas
                         </a>
-                        <a href="https://xerticaai.github.io/calculadora-roi-governo/" target="_blank" class="btn-calculator uppercase w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
+                        <!-- uppercase removido --><a href="https://xerticaai.github.io/calculadora-roi-governo/" target="_blank" class="btn-calculator w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
                             Cálculo de ROI
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Card Saúde --><div class="sector-card bg-white rounded-2xl p-6 shadow-lg border border-gray-200 flex flex-col justify-between">
-                 <!-- Ícone de Fundo --><span class="material-symbols-outlined bg-icon">health_and_safety</span>
-                 <div class="relative z-10">
-                    <h2 class="text-2xl font-bold uppercase mb-4 text-center gradient-text">Saúde</h2>
-                    <p class="text-sm text-center text-gray-500 mb-6">Veja o potencial da IA em agendamentos, atualização de prontuários e anonimização.</p> 
+            <!-- Card Saúde --><div class="sector-card rounded-2xl p-6 flex flex-col justify-between">
+                <!-- Conteúdo (z-index removido) --><div class="relative">
+                    <!-- Ícone NOVO (circular) --><div class="card-icon-wrapper">
+                         <span class="material-symbols-outlined">health_and_safety</span>
+                    </div>
+                    
+                    <!-- TÍTULO ATUALIZADO: .gradient-text removido, text-white adicionado --><h2 class="text-2xl font-bold text-center mb-4 text-white">Saúde</h2>
+                    <p class="text-sm text-center text-slate-400 mb-6">Veja o potencial da IA em agendamentos, atualização de prontuários e anonimização.</p> 
                     <div class="space-y-4 flex flex-col">
-                        <a href="https://xerticaai.github.io/calculadora-horas-saude/" target="_blank" class="btn-calculator uppercase w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
+                        <!-- uppercase removido --><a href="https://xerticaai.github.io/calculadora-horas-saude/" target="_blank" class="btn-calculator w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
                             Economia de Horas
                         </a>
-                        <a href="https://xerticaai.github.io/calculadora-roi-saude/" target="_blank" class="btn-calculator uppercase w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
+                        <!-- uppercase removido --><a href="https://xerticaai.github.io/calculadora-roi-saude/" target="_blank" class="btn-calculator w-full text-center py-3 px-4 rounded-lg font-semibold text-sm"> 
                             Cálculo de ROI
                         </a>
                     </div>
-                 </div>
+                </div>
             </div>
 
         </div>
     </main>
 
-    <footer class="py-4 text-center text-sm text-gray-600 mt-auto">
+    <footer class="py-4 text-center text-sm text-slate-500 mt-auto">
         <p>© 2024 Xertica.ai. Todos os direitos reservados.</p>
     </footer>
 
 </body>
 </html>
-
-
